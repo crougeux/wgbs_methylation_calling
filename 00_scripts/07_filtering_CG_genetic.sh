@@ -1,13 +1,7 @@
 #!/bin/bash
-  
-#SBATCH -J wgbs_filtG
-#SBATCH -o log-filtering_CG_genet.out
-#SBATCH -c 1 
-#SBATCH -p small
-#SBATCH --mail-type=ALL
-#SBATCH --mail-user=clement.rougeux.1@ulaval.ca
-#SBATCH --time=1-00:00
-#SBATCH --mem=3G
+
+# 1 CPU
+# 3 Go
 
 cd $SLURM_SUBMIT_DIR
 
