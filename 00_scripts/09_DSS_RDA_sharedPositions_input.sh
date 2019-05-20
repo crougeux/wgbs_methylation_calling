@@ -26,51 +26,51 @@ TEMP="99_tmp"
 ID=""
 
 ## Preparing shared positions file
-#for file in $(ls $METH/*_CG_noCT.CGmap)
+for file in $(ls $METH/*_CG_noCT.CGmap)
 
-#    do
-#        base=$(basename $file)
-#        file2=$(echo "$file" | perl -pe 's/_CG_noCT.CGmap//')
-#        name=$(basename $file2)
-#        # Getting position for each file -> position file
-#        echo "Extracting position for:" $name
-#        awk '{print$1"_"$3}' $file > "$TEMP"/"$name"_positions
-#done
+    do
+        base=$(basename $file)
+        file2=$(echo "$file" | perl -pe 's/_CG_noCT.CGmap//')
+        name=$(basename $file2)
+        # Getting position for each file -> position file
+        echo "Extracting position for:" $name
+        awk '{print$1"_"$3}' $file > "$TEMP"/"$name"_positions
+done
 
-#echo "Building shared positions file"
-#cat "$TEMP"/*positions | sort | uniq -c | sed -n -e 's/^ *55 \(.*\)/\1/p' > "$TEMP"/shared.positions.temp
-#cat "$HEAD" "$TEMP"/shared.positions.temp > "$TEMP"/shared.positions 
+echo "Building shared positions file"
+cat "$TEMP"/*positions | sort | uniq -c | sed -n -e 's/^ *55 \(.*\)/\1/p' > "$TEMP"/shared.positions.temp
+cat "$HEAD" "$TEMP"/shared.positions.temp > "$TEMP"/shared.positions 
 
 ## Preparing the DSS input file with shared positions
-#for file in $(ls $METH/*_CG_noCT.CGmap) 
-    
-#    do
-#        base=$(basename $file)
-#        file2=$(echo "$file" | perl -pe 's/_CG_noCT.CGmap//') 
-#        name=$(basename $file2)
-#        # Formating CGmap files
-#        echo "Formating file:" $name
-#        awk '{print$1"_"$3"\t"$0}' $file > "$TEMP"/"$name".temp2
-#
-#        # Filtering the CGmap file
-#        echo "Filtering:" $name
-#        #awk 'BEGIN{i=0} FNR==NR { a[i++]=$1; next } { for(j=0;j<i;j++) if(index($0,a[j])) {print $0;break} }' $POS "$TEMP"/"$name.temp2" > "$TEMP"/"$name".temp3
-#        awk 'FNR==NR{arr[$1];next}($1) in arr {print $0}' $POS "$TEMP"/"$name.temp2" > "$TEMP"/"$name".temp3
-##        
-3        # Reformating the filtered file to CGmap format
-#        echo "Formating to CGmap format:" $name
-#        awk '{print$2"\t"$4"\t"$9"\t"$8}' "$TEMP"/"$name.temp3" > "$TEMP"/"$name".temp4
+for file in $(ls $METH/*_CG_noCT.CGmap) 
+   
+    do
+        base=$(basename $file)
+        file2=$(echo "$file" | perl -pe 's/_CG_noCT.CGmap//') 
+        name=$(basename $file2)
+        # Formating CGmap files
+        echo "Formating file:" $name
+        awk '{print$1"_"$3"\t"$0}' $file > "$TEMP"/"$name".temp2
+
+        # Filtering the CGmap file
+        echo "Filtering:" $name
+        #awk 'BEGIN{i=0} FNR==NR { a[i++]=$1; next } { for(j=0;j<i;j++) if(index($0,a[j])) {print $0;break} }' $POS "$TEMP"/"$name.temp2" > "$TEMP"/"$name".temp3
+        awk 'FNR==NR{arr[$1];next}($1) in arr {print $0}' $POS "$TEMP"/"$name.temp2" > "$TEMP"/"$name".temp3
         
-#        # Adding DSS header
-#        cat "$HEAD1" "$TEMP"/"$name.temp4" > "$DSS"/"$name"_shared.dss
-#        # Removing TEMP files
-#        echo "Removed temp files for:" $name
-#        rm "$TEMP"/"$name.temp"*
-#        rm "$TEMP"/*_positions
-#
-#        echo "
-#        >>> "
-#done
+        # Reformating the filtered file to CGmap format
+        echo "Formating to CGmap format:" $name
+        awk '{print$2"\t"$4"\t"$9"\t"$8}' "$TEMP"/"$name.temp3" > "$TEMP"/"$name".temp4
+        
+        # Adding DSS header
+        cat "$HEAD1" "$TEMP"/"$name.temp4" > "$DSS"/"$name"_shared.dss
+        # Removing TEMP files
+        echo "Removed temp files for:" $name
+        rm "$TEMP"/"$name.temp"*
+        rm "$TEMP"/*_positions
+
+        echo "
+        >>> "
+done
 
 ## Preparing the RDA input file
 for file in $(ls $METH/*_CG_noCT.CGmap)  
