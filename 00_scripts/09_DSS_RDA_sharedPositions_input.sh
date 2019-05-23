@@ -26,7 +26,7 @@ TEMP="99_tmp"
 ID=""
 
 ## Preparing shared positions file
-for file in $(ls $METH/*_CG_noCT.CGmap)
+for file in $(ls $METH/"$ID"*_CG_noCT.CGmap)
 
     do
         base=$(basename $file)

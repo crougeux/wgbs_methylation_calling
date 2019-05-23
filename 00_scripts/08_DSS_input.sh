@@ -20,10 +20,10 @@ METH="10_methylation_CG"
 DSS="11_DSS"
 INFO="01_archives/dss.header"
 TEMP="99_tmp"
-ID="BAL-11"
+ID=""
 
 ## Prep. files for DSS
-for file in $(ls $METH/*_CG_noCT.CGmap)
+for file in $(ls $METH/"$ID"*_CG_noCT.CGmap)
 
     do
         base=$(basename $file)

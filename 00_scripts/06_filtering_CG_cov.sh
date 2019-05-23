@@ -16,7 +16,7 @@ cp "$SCRIPT" "$LOG_FOLDER"/"$TIMESTAMP"_"$NAME"
 ## Define variables
 RAWMETH="08_methylation_call"
 FILTMETH="10_methylation_CG"
-ID="BAL-3"
+ID=""
 
 ## Basic filtering on coverage and on methylation type
 for file in $(ls $RAWMETH/"$ID"*.sorted.bam.dedup_reads.bam.CGmap.gz) 

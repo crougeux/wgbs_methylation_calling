@@ -18,10 +18,10 @@ cp "$SCRIPT" "$LOG_FOLDER"/"$TIMESTAMP"_"$NAME"
 GENET="09_genotype_positions/sites_all_maf0.01_pctind0.2_CTs_temp"
 METH="10_methylation_CG"
 TEMP="99_tmp"
-ID="BAL-11"
+ID=""
 
 ## Filtering for gentic CT polymorphisms
-for file in $(ls $METH/*_CG.CGmap)
+for file in $(ls $METH/"$ID"*_CG.CGmap)
 
     do
         # Formatting the CGmap file
