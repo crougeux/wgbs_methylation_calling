@@ -1,11 +1,11 @@
 ## WGBS data preparation
 
 Pipeline to clean, align, prepare sequence and call methylation for WGBS (Whole Genome Bisulfite Sequencing) data.
-(some improvement for filtering and cleaning called methylation to come soon!)
 
 ## Dependencies
 
 [trim_galore!](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/)
+
 [BEseeker2](https://github.com/BSSeeker/BSseeker2)
 (see specific BSseeker2 requirements)
 
